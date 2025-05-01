@@ -3,6 +3,7 @@ import type { NextConfig } from "next";
 const nextConfig: NextConfig = {
   /* config options here */
   devIndicators: false,
+  // allow images from external sources
   images: {
     remotePatterns: [
       {
