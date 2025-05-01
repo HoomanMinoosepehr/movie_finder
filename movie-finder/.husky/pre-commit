@@ -1,0 +1,9 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🛠 formating..."
+npx tsc --noEmit && npx eslint --fix . && npx prettier --write .
+echo "✅ format done."
+echo "🛠 run lint-staged ..."
+npx lint-staged
+echo "✅ lint-staged done."
