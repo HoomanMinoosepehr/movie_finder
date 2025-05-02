@@ -3,8 +3,8 @@ import { NextResponse, NextRequest} from 'next/server';
 export async function GET(request: NextRequest) {
     const api_key = process.env.TMDB_API_KEY;
     const reqParams = request.nextUrl.searchParams;
-    const movie_id = reqParams.get('movie_id');
-    const url = `https://api.themoviedb.org/3/movie/${movie_id}?language=en-US`;
+    const movieId = reqParams.get('movie_id');
+    const url = `https://api.themoviedb.org/3/movie/${movieId}?language=en-US`;
     const options = {
         method: 'GET',
         headers: {
