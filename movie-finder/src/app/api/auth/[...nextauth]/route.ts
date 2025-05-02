@@ -1,9 +1,11 @@
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import  CredentialsProvider  from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
-import { prisma } from "@/lib/prisma";
+import { prisma } from "../../../../../lib/prisma";
+import { JWT } from "next-auth/jwt";
+import { Session } from "next-auth";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
     providers: [
         CredentialsProvider({
             name: "Credentials",
@@ -16,7 +18,7 @@ export const authOptions = {
                     return null;
                 }
                 const user = await prisma.user.findUnique({
-                    where: { email: credentials.email }
+                    where: { email: credentials.email.toLowerCase() }
                 });
                 if (!user) {
                     return null;
@@ -36,9 +38,9 @@ export const authOptions = {
         }),
     ],
     callbacks: {
-        async session({ session, token }) {
+        async session({ session, token }: { session: Session; token: JWT }) {
             if (token && session.user) {
-                session.user.id = token.id as string;
+            session.user.id = token.id as string;
             }
             return session;
         },
@@ -48,9 +50,6 @@ export const authOptions = {
             }
             return token;
         }
-    },
-    pages: {
-        signIn: '/auth/signin',
     },
     session: {
         strategy: "jwt",

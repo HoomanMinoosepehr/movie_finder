@@ -1,3 +1,4 @@
+import LogIn from "@/components/LogIn";
 import Register from "@/components/Register";
 
 interface AuthProps {
@@ -14,7 +15,9 @@ export default async function Auth({ params }: AuthProps) {
             <h1>Auth</h1>
             {
                 (authMode === 'login') ? (
-                    <div>Login</div>
+                    <div>
+                        <LogIn />
+                    </div>
                 ) : (authMode === 'register') ? (
                     <div>
                         <Register />
