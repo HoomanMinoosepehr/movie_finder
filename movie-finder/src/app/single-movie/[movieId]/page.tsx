@@ -1,7 +1,7 @@
 import Image from "next/image";
-interface SingleMoviProps {
+interface SingleMovieProps {
     params: {
-        movie_id: string;
+        movieId: string;
     }
 }
 
@@ -22,9 +22,9 @@ interface MovieDetails {
     status: string;
 }
 
-export default async function SingleMovie({ params }: SingleMoviProps) {
-    const { movie_id} = params;
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/single-movie?movie_id=${movie_id}`);
+export default async function SingleMovie({ params }: SingleMovieProps) {
+    const { movieId } = await params;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/single-movie?movie_id=${movieId}`);
     const data: MovieDetails = await res.json();
     return (
         <div>

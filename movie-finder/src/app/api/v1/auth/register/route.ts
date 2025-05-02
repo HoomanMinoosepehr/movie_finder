@@ -5,9 +5,8 @@ import { prisma } from "../../../../../../lib/prisma";
 export async function POST(request: NextRequest) {
     try {
         const { name, email, password } = await request.json();
-
         const userExists = await prisma.user.findUnique({
-            where: { email },
+            where: { email: email.toLowerCase() },
         });
         // reject registration if user already exists
         if (userExists) {
@@ -22,14 +21,14 @@ export async function POST(request: NextRequest) {
         const user = await prisma.user.create({
             data: {
                 name,
-                email,
+                email: email.toLowerCase(),
                 password: hashedPassword,
             }
         });
 
         return NextResponse.json({
-            user: { id: user.id, name: user.name, email: user.email }
-        })
+            user: { id: user.id, name: user.name, email: user.email },
+        }, { status: 201 });
     } catch {
         return NextResponse.json(
             { error: "Registration failed" },
