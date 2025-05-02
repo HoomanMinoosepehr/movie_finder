@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default async function Home() {
   try {
     // fetch the initial data from API for a faster first load and pass it to the grid component as initial data
-    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/movie-list`, {next: { revalidate: revalidate }});
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/movie-list?page=1`, {next: { revalidate: revalidate }});
     if (!res.ok) {
       console.log(`API error: ${res.status}`);
       throw new Error("Failed to fetch data");
