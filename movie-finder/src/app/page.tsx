@@ -1,7 +1,33 @@
+import MoviesGrid from "@/components/MoviesGrid";
+import { Metadata } from "next";
 
-export default function Home() {
-  return (
-    <>
-    </>
-  );
+const revalidate = 3600*6; // re-rendering the page every 6 hours
+
+export const metadata: Metadata = {
+  title: "Movie Finder - Popular Movies",
+  description: "Discover movies that are currently playing in theaters."
+};
+
+export default async function Home() {
+  try {
+    // fetch the initial data from API for a faster first load and pass it to the grid component as initial data
+    const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/movie-list?page=1`, {next: { revalidate: revalidate }});
+    if (!res.ok) {
+      console.log(`API error: ${res.status}`);
+      throw new Error("Failed to fetch data");
+    }
+    const data = await res.json();
+  
+    return (
+      <>
+        <MoviesGrid initialMovies={data.results} />
+      </>
+    );
+  } catch {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p className="text-lg">Error fetching data. Please try again later.</p>
+      </div>
+    );
+  }
 }
