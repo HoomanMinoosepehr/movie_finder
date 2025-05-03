@@ -14,11 +14,13 @@ export default function Navbar() {
                     Movie Finder
                 </Link>
                 <div className="flex flex-col space-x-4 justify-space-between border">
-                    <div>
-                        <Link href="/" className="hover:text-gray-400">
-                            Home
-                        </Link>
-                    </div>
+                    { status === "authenticated" ? (
+                        <div>
+                            <Link href="/watch-list" className="hover:text-gray-400">
+                                Watch List
+                            </Link>
+                        </div>
+                    ) : null}
                     <div>
                         {status === "authenticated" ? (
                             <div>
@@ -34,7 +36,7 @@ export default function Navbar() {
                             </div>
                         ) : (
                             <div>
-                                <Link href="auth/login" className="hover:text-gray-400">
+                                <Link href="/auth/login" className="hover:text-gray-400">
                                     Login
                                 </Link>
                             </div>

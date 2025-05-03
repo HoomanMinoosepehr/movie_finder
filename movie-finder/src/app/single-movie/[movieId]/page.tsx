@@ -1,4 +1,7 @@
 import Image from "next/image";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../api/auth/[...nextauth]/route"
+import WatchListButton from "@/components/WatchListButton";
 interface SingleMovieProps {
     params: {
         movieId: string;
@@ -23,6 +26,7 @@ interface MovieDetails {
 }
 
 export default async function SingleMovie({ params }: SingleMovieProps) {
+    const session = await getServerSession(authOptions);
     const { movieId } = await params;
     const res = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL}/api/v1/single-movie?movie_id=${movieId}`);
     const data: MovieDetails = await res.json();
@@ -45,6 +49,15 @@ export default async function SingleMovie({ params }: SingleMovieProps) {
                     <p className="text-sm">Budget: {data.budget}</p>
                     <p className="text-sm">Runtime: {data.runtime} minutes</p>
                     <p className="text-sm">Status: {data.status}</p>
+                        { session?.user ? (
+                            <WatchListButton
+                                movieId={data.id.toString()}
+                                movieTitle={data.title}
+                                posterPath={data.poster_path}
+                            />
+                        ) : (
+                            <p className="text-sm text-red-500">Login to add to watch list</p>
+                        ) }
                     <div>
                         <h2>Genres:</h2>
                         {data.genres.map((genre) => (
