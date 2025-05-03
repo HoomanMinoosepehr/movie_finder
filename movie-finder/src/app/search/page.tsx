@@ -35,7 +35,7 @@ export default async function SearchPage({
     return (
       <>
         <PageBackground/>
-        <div className="container mx-auto p-4">
+        <div className="container mx-auto px-4 pt-32">
           <SearchBar />
           <h2 className="text-2xl font-bold my-4 text-white">Search Results for: "{query}"</h2>
           {data.results.length > 0 ? (
