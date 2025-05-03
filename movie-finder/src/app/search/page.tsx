@@ -38,6 +38,8 @@ export default async function SearchPage({
         {data.results.length > 0 ? (
           <MoviesGrid 
             initialMovies={data.results} 
+            apiEndpoint="movie-search"
+            searchQuery={query}
           />
         ) : (
           <p className="text-center text-lg text-gray-600">No results found for "{query}"</p>
