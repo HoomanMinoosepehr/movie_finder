@@ -24,3 +24,8 @@ export interface WatchListMovie {
     posterPath: string | null;
     createdAt: Date;
 }
+
+export interface AuthError {
+    message: string;
+    status: boolean;
+}
