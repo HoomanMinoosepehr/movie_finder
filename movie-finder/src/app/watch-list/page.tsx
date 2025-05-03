@@ -4,6 +4,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route";
 import { prisma } from "../../../lib/prisma";
 import { WatchListMovie } from "@/types";
 import MovieCard from "@/components/MovieCard";
+import PageBackground from "@/components/PageBackground";
 
 export default async function WatchList() {
     const session = await getServerSession(authOptions);
@@ -25,27 +26,30 @@ export default async function WatchList() {
     })
 
     return (
-        <div>
-            <h1>My Watch List:</h1>
-            { watchList.length === 0 ? (
-                <p>Watch List is empty!</p>
-            ) : (
-                <div>
-                    {watchList.map(movie => (
-                        <div key={movie.id}>
-                            <MovieCard
-                                data={(
-                                    {
-                                        id: movie.movieId,
-                                        title: movie.movieTitle,
-                                        poster_path: movie.posterPath ?? "",
-                                    }
-                                )}
-                            />
-                        </div>
-                    ))}
-                </div>
-            )}
-        </div>
+        <>
+            <PageBackground/>
+            <div>
+                <h1>My Watch List:</h1>
+                { watchList.length === 0 ? (
+                    <p>Watch List is empty!</p>
+                ) : (
+                    <div>
+                        {watchList.map(movie => (
+                            <div key={movie.id}>
+                                <MovieCard
+                                    data={(
+                                        {
+                                            id: movie.movieId,
+                                            title: movie.movieTitle,
+                                            poster_path: movie.posterPath ?? "",
+                                        }
+                                    )}
+                                />
+                            </div>
+                        ))}
+                    </div>
+                )}
+            </div>
+        </>
     )
 }
