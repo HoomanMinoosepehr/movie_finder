@@ -1,4 +1,5 @@
 import MoviesGrid from "@/components/MoviesGrid";
+import SearchBar from "@/components/SearchBar";
 import { Metadata } from "next";
 
 const revalidate = 3600*6; // re-rendering the page every 6 hours
@@ -19,9 +20,11 @@ export default async function Home() {
     const data = await res.json();
   
     return (
-      <>
+      <div className="container mx-auto p-4">
+        <SearchBar />
+        <h2 className="text-2xl font-bold my-4">Now Playing</h2>
         <MoviesGrid initialMovies={data.results} />
-      </>
+      </div>
     );
   } catch {
     return (
