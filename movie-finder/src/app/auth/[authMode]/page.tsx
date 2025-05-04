@@ -21,8 +21,8 @@ export default async function Auth({ params }: AuthProps) {
             <div
               className={`w-1/2 py-4 text-center font-medium ${
                 authMode === "login"
-                  ? "text-white bg-purple-800"
-                  : "text-gray-400 hover:text-white transition-colors"
+                  ? "text-gray-800 bg-yellow-500"
+                  : "text-yellow-500 hover:text-yellow-600 transition-colors"
               }`}
             >
               <Link href="/auth/login">Login</Link>
@@ -30,8 +30,8 @@ export default async function Auth({ params }: AuthProps) {
             <div
               className={`w-1/2 py-4 text-center font-medium ${
                 authMode === "register"
-                  ? "text-white bg-purple-800"
-                  : "text-gray-400 hover:text-white transition-colors"
+                  ? "text-gray-800 bg-yellow-500"
+                  : "text-yellow-500 hover:text-yellow-600 transition-colors"
               }`}
             >
               <Link href="/auth/register">Register</Link>
