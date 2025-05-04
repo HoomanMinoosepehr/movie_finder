@@ -4,6 +4,7 @@ export interface Movie {
     poster_path: string;
     release_date?: string;
     vote_average?: number;
+    overview?: string;
 }
 
 export interface MovieList {
@@ -22,4 +23,9 @@ export interface WatchListMovie {
     movieTitle: string;
     posterPath: string | null;
     createdAt: Date;
+}
+
+export interface AuthError {
+    message: string;
+    status: boolean;
 }

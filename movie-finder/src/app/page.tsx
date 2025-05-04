@@ -1,4 +1,5 @@
 import MoviesGrid from "@/components/MoviesGrid";
+import PageBackground from "@/components/PageBackground";
 import SearchBar from "@/components/SearchBar";
 import { Metadata } from "next";
 
@@ -20,11 +21,14 @@ export default async function Home() {
     const data = await res.json();
   
     return (
-      <div className="container mx-auto p-4">
-        <SearchBar />
-        <h2 className="text-2xl font-bold my-4">Now Playing</h2>
-        <MoviesGrid initialMovies={data.results} />
-      </div>
+      <>
+        <PageBackground/>
+        <div className="container mx-auto p-4 pt-32">
+          <SearchBar />
+          <h2 className="text-2xl font-bold my-4 mb-5 text-white">Latest Movies</h2>
+          <MoviesGrid initialMovies={data.results} />
+        </div>
+      </>
     );
   } catch {
     return (

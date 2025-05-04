@@ -1,4 +1,5 @@
 import MoviesGrid from "@/components/MoviesGrid";
+import PageBackground from "@/components/PageBackground";
 import SearchBar from "@/components/SearchBar";
 import { Metadata } from "next";
 
@@ -32,19 +33,22 @@ export default async function SearchPage({
     const data = await res.json();
     
     return (
-      <div className="container mx-auto p-4">
-        <SearchBar />
-        <h2 className="text-2xl font-bold my-4">Search Results for: "{query}"</h2>
-        {data.results.length > 0 ? (
-          <MoviesGrid 
-            initialMovies={data.results} 
-            apiEndpoint="movie-search"
-            searchQuery={query}
-          />
-        ) : (
-          <p className="text-center text-lg text-gray-600">No results found for "{query}"</p>
-        )}
-      </div>
+      <>
+        <PageBackground/>
+        <div className="container mx-auto px-4 pt-32">
+          <SearchBar />
+          <h2 className="text-2xl font-bold my-4 text-white">Search Results for: "{query}"</h2>
+          {data.results.length > 0 ? (
+            <MoviesGrid 
+              initialMovies={data.results} 
+              apiEndpoint="movie-search"
+              searchQuery={query}
+            />
+          ) : (
+            <p className="text-center text-lg text-gray-600">No results found for "{query}"</p>
+          )}
+        </div>
+      </>
     );
   } catch {
     return (
