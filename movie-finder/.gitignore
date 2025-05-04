@@ -45,3 +45,4 @@ next-env.d.ts
 
 # add playwright test results
 /playwright-report/index.html
+/test-results/
