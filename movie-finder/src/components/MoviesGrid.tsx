@@ -21,7 +21,7 @@ export default function MoviesGrid({
         
         // we're adding pageIndex by two because it starts from 0 and we already have the first page
         // we need to save it to adjust it based on the props
-        let url = `api/v1/${apiEndpoint}?page=${pageIndex + 2}`;
+        let url = `/api/v1/${apiEndpoint}?page=${pageIndex + 2}`;
         
         // modifying the url if it's being used in search page
         if (apiEndpoint === "movie-search" && searchQuery) {
