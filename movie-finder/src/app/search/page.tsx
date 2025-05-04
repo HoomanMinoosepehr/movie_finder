@@ -14,6 +14,10 @@ export default async function SearchPage({
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   try {
+    // i get an error regarding using await before searchParams
+    // but if I add await before searchParams I'll get another error that says 
+    // I shouldn't use await (maybe because Next.js version)
+    // but works fine!
     const query = searchParams.query as string;
 
     // Fetch initial data for a faster first load
