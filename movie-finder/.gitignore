@@ -42,3 +42,7 @@ next-env.d.ts
 
 # vscode
 .vscode
+
+# add playwright test results
+/playwright-report/index.html
+/test-results/
