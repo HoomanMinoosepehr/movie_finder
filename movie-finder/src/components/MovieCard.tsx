@@ -3,11 +3,19 @@ import Image from "next/image";
 import Link from "next/link";
 import { Movie } from "@/types";
 
-export default function MovieCard({ data }: { data: Movie }) {
+interface MovieCardProps {
+  data: Movie;
+  isWatchList?: boolean;
+}
+
+export default function MovieCard({
+  data,
+  isWatchList = false,
+}: MovieCardProps) {
   return (
     <div className="flex flex-col">
       <Link href={`/single-movie/${data.id}`} className="block">
-        <div className="relative group overflow-hidden rounded-lg shadow-lg transition-transform duration-500 hover:scale-[1.04]">
+        <div className="relative group overflow-hidden rounded-lg shadow-lg  transition-transform duration-500 hover:scale-[1.04]">
           <Image
             src={`https://image.tmdb.org/t/p/w400${data.poster_path}`}
             alt={data.title}
@@ -15,7 +23,9 @@ export default function MovieCard({ data }: { data: Movie }) {
             height={300}
             className="w-full object-cover block"
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-black group: bg-opacity-85 text-white p-4  translate-y-full transition-transform duration-500 group-hover:translate-y-0">
+          <div
+            className={`absolute bottom-0 left-0 right-0 bg-black bg-opacity-85 text-white p-4 ${isWatchList ? "hidden" : null} translate-y-full transition-transform duration-500 group-hover:translate-y-0`}
+          >
             <h3 className="font-bold text-2xl text-gray-300 truncate">
               {data.title}
             </h3>
