@@ -36,7 +36,7 @@ Create a `.env.local` file in the root directory with the following variables:
 NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
 # Database connection
-DATABASE_URL=postgresql://username:password@localhost:5432/movie_finder
+DATABASE_URL=postgresql://username:password@localhost:5432/movie_finder?schema=public
 # username: your user name for your local database
 # password: your password for your local database
 
