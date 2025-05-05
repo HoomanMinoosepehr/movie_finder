@@ -37,8 +37,8 @@ NEXT_PUBLIC_BASE_URL=http://localhost:3000
 
 # Database connection
 DATABASE_URL=postgresql://username:password@localhost:5432/movie_finder
-- username: your user name for your local database
-- password: your password for your local database
+# username: your user name for your local database
+# password: your password for your local database
 
 # NextAuth configuration
 NEXT_SECRET=boj02FVxp3j2rF+3cOrvxU5O4KwKkwbT+PfkOlRdxBA=
